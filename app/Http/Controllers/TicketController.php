@@ -27,7 +27,8 @@ class TicketController extends Controller
         $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
-            'priorite' => 'required|in:normale,critique',
+            'priorite' => 'required|in:normale,critique,urgence',
+
         ]);
 
         Ticket::create([

@@ -11,6 +11,15 @@
 
                 <form method="POST" action="{{ route('tickets.store') }}">
                     @csrf
+                                        @if($errors->any())
+                        <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <div class="mb-4">
                         <label class="block font-bold mb-1">Titre</label>
@@ -26,10 +35,11 @@
 
                     <div class="mb-4">
                         <label class="block font-bold mb-1">Priorité</label>
-                        <select name="priorite" class="w-full border rounded p-2">
-                            <option value="normale">Normale</option>
-                            <option value="critique">Critique</option>
-                        </select>
+                                <select name="priorite" class="w-full border rounded p-2">
+                                    <option value="normale">Normale</option>
+                                    <option value="critique">Critique</option>
+                                    <option value="urgence"> URGENCE - Vie en danger</option>
+                                </select>
                     </div>
 
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">

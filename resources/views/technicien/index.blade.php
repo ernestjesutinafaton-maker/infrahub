@@ -8,6 +8,20 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
+                            @php
+                        $urgences = $tickets->where('priorite', 'urgence')->where('statut', 'nouveau');
+                    @endphp
+
+                    @if($urgences->count() > 0)
+                        <div class="bg-red-600 text-white p-4 rounded mb-4 animate-pulse">
+                            <h2 class="text-xl font-bold">🚨 ALERTE URGENCE !</h2>
+                            <p>{{ $urgences->count() }} ticket(s) urgence en attente !</p>
+                            @foreach($urgences as $urgence)
+                                <p class="font-bold">→ {{ $urgence->titre }} — par {{ $urgence->user->name }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
             @if(session('success'))
                 <div class="bg-green-100 text-green-700 p-4 rounded mb-4">
                     {{ session('success') }}
